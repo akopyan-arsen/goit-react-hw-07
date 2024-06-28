@@ -5,7 +5,11 @@ import { selectFilteredContacts } from "../../redux/contactSlice";
 
 const ContactList = () => {
   const contacts = useSelector(selectFilteredContacts);
-
+  if (contacts.length === 0) {
+    return (
+      <p className={css.noContacts}>There are no contacts at your request</p>
+    );
+  }
   return (
     <ul className={css.contactList}>
       {contacts.map((contact) => (
