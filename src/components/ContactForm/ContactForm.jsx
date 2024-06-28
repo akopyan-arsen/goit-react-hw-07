@@ -4,8 +4,7 @@ import { ErrorMessage } from "formik";
 import css from "./ContactForm.module.css";
 import { useId } from "react";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactSlice";
-import { nanoid } from "@reduxjs/toolkit";
+import { addContact } from "../../redux/contactsOps";
 
 const ContactForm = () => {
   const nameFieldId = useId();
@@ -15,7 +14,7 @@ const ContactForm = () => {
   const handleSubmit = (values, actions) => {
     dispatch(
       addContact({
-        id: nanoid(),
+        createdAt: new Date().toISOString(),
         name: values.name,
         number: values.number,
       })

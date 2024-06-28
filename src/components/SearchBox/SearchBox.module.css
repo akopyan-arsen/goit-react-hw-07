@@ -1,8 +1,8 @@
 .filterWrapper {
   display: flex;
   flex-direction: column;
-  margin-top: 72px;
-  margin-bottom: 72px;
+  margin-top: 32px;
+  margin-bottom: 48px;
   justify-content: center;
   align-items: center;
 }
