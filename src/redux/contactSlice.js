@@ -9,16 +9,12 @@ export const selectError = (state) => state.contacts.error;
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectFilter],
   (contacts, filter) => {
-    switch (filter) {
-      case filter.active:
-        return contacts.filter((contact) => !contact.completed);
-      case filter.completed:
-        return contacts.filter((contact) => contact.completed);
-      default:
-        return contacts;
-    }
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
   }
 );
+
 const handlePending = (state) => {
   state.loading = true;
 };
@@ -56,7 +52,7 @@ const contactSlice = createSlice({
         state.loading = false;
         state.error = null;
         const index = state.items.findIndex(
-          (task) => task.id === action.payload.id
+          (contact) => contact.id === action.payload.id
         );
         state.items.splice(index, 1);
       })
