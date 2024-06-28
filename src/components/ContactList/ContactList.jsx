@@ -1,14 +1,21 @@
 import { useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
 import css from "./ContactList.module.css";
-import { selectFilteredContacts } from "../../redux/contactSlice";
+import {
+  selectFilteredContacts,
+  selectLoading,
+} from "../../redux/contactSlice";
 
 const ContactList = () => {
   const contacts = useSelector(selectFilteredContacts);
+  const loading = useSelector(selectLoading);
+
+  if (loading) {
+    return null;
+  }
+
   if (contacts.length === 0) {
-    return (
-      <p className={css.noContacts}>There are no contacts at your request</p>
-    );
+    return <p className={css.noContacts}>Sorry... There are no contacts</p>;
   }
   return (
     <ul className={css.contactList}>
